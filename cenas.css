@@ -1,0 +1,25 @@
+#text{
+    position: absolute;
+    top:80%;
+    width:80%;
+    right: 10%;
+}
+
+.Lydia{
+text-align: right;
+}
+p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30pt;
+}
+
+#toscroll{
+    position: absolute;
+    color: white;
+}
+#animat{
+    position: fixed;
+    width:100%;
+    height:auto;
+    
+}
