@@ -21,5 +21,15 @@ p{
     position: fixed;
     width:100%;
     height:auto;
-    
+    display: block;
+}
+
+#butao{
+    width: 50px;
+    height:10px;
+    background-color: grey;
+    display: none;
+    position: fixed;
+    bottom:10%;
+    left: 10%;
 }
