@@ -118,9 +118,8 @@ window.addEventListener("scroll", function () {
     //console.log(window.scrollY);
         for(let i = 0; i < animat[cena].length; i++){
             if(window.scrollY>animat[cena][i].scrllStart && window.scrollY<animat[cena][i].scrllStart+animat[cena][i].scrllTotal){
-                //console.log("cena:", cena);
+                console.log("cena:", cena);
                 ScrAnim = animat[cena][i].src;
-                anim.load();
                 console.log(animat[cena][i].src)
                 let scrollFraction = (window.scrollY-animat[cena][i].scrllStart) / animat[cena][i].scrllTotal;
                 //console.log("frac" + scrollFraction);
@@ -150,6 +149,9 @@ window.addEventListener("scroll", function () {
             fala1.textContent = falas[cena][i].text;
             fala1.classList.add(falas[cena][i].personagem);
             text.appendChild(fala1);
+            setTimeout(() => {
+                fala1.classList.add("visible");
+            }, 50);
             falas[cena][i].done=true;
             console.log("fala"+i + "cena" + cena);
         }
@@ -177,33 +179,3 @@ window.addEventListener("scroll", function () {
         }
     });
 
-/*
-    let FundoAnimat = document.getElementById("animatFundo");
-    const ctx = FundoAnimat.getContext("2d");
-    const container = document.getElementById("frames");
-
-    anim.addEventListener("play", () => {
-        canvas.width = anim.videoWidth;
-        canvas.height = anim.videoHeight;
-        captureFrames();
-        console.log("framesYayyy")
-      });
-
-
-    function captureFrames() {
-        if (anim.paused || anim.ended) return;
-      
-        // desenha o frame atual
-        ctx.drawImage(anim, 0, 0, canvas.width, canvas.height);
-      
-        // gera imagem
-        const img = new Image();
-        img.src = canvas.toDataURL("image/jpeg", 0.5);
-      
-        // adiciona na página
-        container.appendChild(img);
-      
-        // chama novamente no próximo frame do navegador
-        requestAnimationFrame(captureFrames);
-      }
-*/
