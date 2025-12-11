@@ -8,6 +8,10 @@
 .Lydia{
 text-align: right;
 }
+
+.space{
+    color: rgba(0, 0, 0, 0);
+}
 p{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 30pt;
@@ -19,10 +23,19 @@ p{
 }
 #animat{
     position: fixed;
+    top:0px;
     width:100%;
     height:auto;
     display: block;
 }
+#animatFundo{
+    position: fixed;
+    top:0px;
+    width:100%;
+    height:auto;
+    display: block;
+}
+
 
 #butao{
     width: 50px;
@@ -32,4 +45,8 @@ p{
     position: fixed;
     bottom:10%;
     left: 10%;
+}
+
+#toscroll{
+    top: 1100px;
 }
