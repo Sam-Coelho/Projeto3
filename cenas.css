@@ -1,12 +1,27 @@
 #text{
     position: absolute;
     top:80%;
-    width:80%;
-    right: 10%;
+    width:88%;
+    right: 6%;
 }
 
 .Lydia{
 text-align: right;
+opacity: 0;
+transform: translateX(20px);
+transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+
+.George{
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible{
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .space{
@@ -14,7 +29,7 @@ text-align: right;
 }
 p{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 30pt;
+    font-size: 30pt; 
 }
 
 #toscroll{
@@ -43,7 +58,7 @@ p{
     background-color: grey;
     display: none;
     position: fixed;
-    bottom:10%;
+    bottom:6%;
     left: 10%;
 }
 
