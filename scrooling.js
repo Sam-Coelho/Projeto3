@@ -31,62 +31,108 @@ falas[0]=[{
     scrlMoment: 50
 },
 {
-    text:"",
+    text:".",
     done: false,
-    personagem: "George",
+    personagem: "space",
     scrlMoment: 52
 }]
 falas[1]=[{
+    text:".",
+    done: false,
+    personagem: "space",
+    scrlMoment: 10
+},
+{
+    text:".",
+    done: false,
+    personagem: "space",
+    scrlMoment: 20
+},
+{
+    text:".",
+    done: false,
+    personagem: "space",
+    scrlMoment: 30
+},
+{
+    text:".",
+    done: false,
+    personagem: "space",
+    scrlMoment: 35
+},
+{
     text:"Well...",
     done: false,
     personagem: "George",
-    scrlMoment: 51
+    scrlMoment: 45
 },
 {
     text:"Nothing too good for our childreen",
     done: false,
     personagem: "George",
+    scrlMoment: 55
+},
+{
+    text:".",
+    done: false,
+    personagem: "space",
     scrlMoment: 60
 }]
 //adiicionar animações
-let animat = [1];
-animat[0]=[]
+let animat = [2];
+animat[0]=[{
+    src: "branco.mp4",
+    scrllStart: 0,
+    scrllTotal: 1100,
+    dura: 10
+}]
 animat[1]=[{
     src: "portaabrindo.mp4",
     scrllStart: 0,
-    scrllTotal: 200,
+    scrllTotal: 350,
     dura: 5
+},
+{
+    src: "branco.mp4",
+    scrllStart: 380,
+    scrllTotal: 1500,
+    dura: 10
 }
-
 ]
+
+let abtCenas = [1100,5000];
 
 
 
 let cena=0;
 let maxScroll= falas[cena][falas[cena].length-1].scrlMoment * 10;
+let ShowAnim;
+let ScrAnim;
+let VideoMoment=0.001;
+let anim= document.getElementById("animat");
+let lastscr = null;
+anim.pause();
 
 window.addEventListener("scroll", function () {
-    let text = document.getElementById("text");
-    let anim= document.getElementById("animat");
+    let text = document.getElementById("text"); 
     //console.log(window.scrollY);
-    if (animat[cena]) {
-         for(let i = 0; i < animat[cena].length; i++){
+        for(let i = 0; i < animat[cena].length; i++){
             if(window.scrollY>animat[cena][i].scrllStart && window.scrollY<animat[cena][i].scrllStart+animat[cena][i].scrllTotal){
-                console.log("cena:", cena);
-                anim.style.display= "block";
-                anim.src = animat[cena][i].src;
+                //console.log("cena:", cena);
+                ScrAnim = animat[cena][i].src;
+                anim.load();
                 console.log(animat[cena][i].src)
-                anim.currentTime = 0.5;
-                anim.pause();
                 let scrollFraction = (window.scrollY-animat[cena][i].scrllStart) / animat[cena][i].scrllTotal;
-                console.log("frac" + scrollFraction);
-                anim.currentTime = scrollFraction * animat[cena][i].dura;
-            }else{
-                /*anim.style.display= "none";*/
-                console.log("no video");
+                //console.log("frac" + scrollFraction);
+                VideoMoment = scrollFraction * animat[cena][i].dura;
+                if(anim.src !== ScrAnim && ScrAnim !== anim.scr && lastscr !== ScrAnim && ScrAnim !== lastscr){
+                anim.src = ScrAnim;
+                lastscr = ScrAnim;
+                console.log("scrAtualizado");
+                }
+                anim.currentTime = VideoMoment;
             }
         }
-    }
     if(window.scrollY>maxScroll && falas[cena][falas[cena].length-1].done === false){
         let butt = document.createElement("p");
         let abutt= document.getElementById("butao");
@@ -111,7 +157,7 @@ window.addEventListener("scroll", function () {
     
   });
 
-
+  let AddScroolToText = document.getElementById("toscroll");
   let but = document.getElementById("butao");
     but.addEventListener('click', function(e) {
         e.preventDefault(); // evita ir direto para a página
@@ -119,7 +165,45 @@ window.addEventListener("scroll", function () {
         cena=cena+1;
         console.log("cena"+cena);
         let tex= document.getElementById("text");
-        tex.innerHTML="";
+        maxScroll= falas[cena][falas[cena].length-1].scrlMoment * 10;
+        tex.innerHTML="<p></p>";
         window.scrollTo(0, 0);
         but.style.display="none";
-    })
+        console.log("scrlmax " + abtCenas[cena]);
+        AddScroolToText.style.top = abtCenas[cena] + "px";
+        console.log("scrlmax.Confirm " +  AddScroolToText.style.top);
+        for(let i=0; i<falas[cena].length; i++){
+            falas[cena][i].done=false;
+        }
+    });
+
+/*
+    let FundoAnimat = document.getElementById("animatFundo");
+    const ctx = FundoAnimat.getContext("2d");
+    const container = document.getElementById("frames");
+
+    anim.addEventListener("play", () => {
+        canvas.width = anim.videoWidth;
+        canvas.height = anim.videoHeight;
+        captureFrames();
+        console.log("framesYayyy")
+      });
+
+
+    function captureFrames() {
+        if (anim.paused || anim.ended) return;
+      
+        // desenha o frame atual
+        ctx.drawImage(anim, 0, 0, canvas.width, canvas.height);
+      
+        // gera imagem
+        const img = new Image();
+        img.src = canvas.toDataURL("image/jpeg", 0.5);
+      
+        // adiciona na página
+        container.appendChild(img);
+      
+        // chama novamente no próximo frame do navegador
+        requestAnimationFrame(captureFrames);
+      }
+*/
