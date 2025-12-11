@@ -1,0 +1,29 @@
+body {
+    background-image: url("il/capa.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.button{
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin-left: 1200px;
+    margin-top: 350px;
+}
+
+.play, .sound{
+    background-color: transparent;
+    border-color: transparent;
+    background-size:cover;
+    background-position:center;
+    width:auto;
+    height:auto;
+    margin: 10px 20px 10px 20px;
+    padding:0;
+}
+
+button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
